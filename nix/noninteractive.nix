@@ -21,10 +21,6 @@
   environment.defaultPackages = lib.mkForce [
     pkgs.rsync
     pkgs.parted
-    (pkgs.zfs.override {
-      # this overrides saves 10MB
-      samba = pkgs.coreutils;
-    })
   ];
 
   # we are missing this from base.nix
@@ -42,10 +38,8 @@
     "xfs"
   ];
   boot = {
-    kernelModules = [ "zfs" ];
-    extraModulePackages = [
-      config.boot.kernelPackages.zfs
-    ];
+    kernelModules = [];
+    extraModulePackages = [];
   };
 
   networking.hostId = lib.mkDefault "8425e349";
